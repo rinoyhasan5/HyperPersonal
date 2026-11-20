@@ -1,14 +1,7 @@
 {
   "functions": {
     "server.ts": {
-      "includeFiles": [
-        "index.html",
-        "app.js",
-        "analytics.js",
-        "catalog.js",
-        "customers.js",
-        "styles.css"
-      ]
+      "includeFiles": "{index.html,app.js,analytics.js,catalog.js,customers.js,styles.css}"
     }
   }
 }
