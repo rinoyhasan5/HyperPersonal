@@ -20,8 +20,8 @@ flowchart LR
 | Component | Responsibility |
 |---|---|
 | `server.js` | Node built-in HTTP server, static allowlist, JSON routes, input validation, optional server-side OpenAI calls, canonical catalog retrieval. |
-| `server.ts`, `vercel.json` | Vercel Node server entry point and explicit SPA asset inclusion. |
-| `app.js` | Single-page UI rendering, customer scores, recommendations, contextual action policy, feedback/reward logic, local fallback interactions. |
+| `server.ts`, `vercel.json` | Vercel Node server entry point and explicit SPA asset inclusion. The browser script is `client.js` to avoid Vercel's automatic server-entry name `app.js`. |
+| `client.js` | Single-page UI rendering, customer scores, recommendations, contextual action policy, feedback/reward logic, local fallback interactions. |
 | `customers.js`, `catalog.js` | Deterministic synthetic customer and product seed records shared by browser and server. |
 | `store.js` | File-backed JSON persistence, event validation, bandit-state persistence, analytics summaries. |
 | `analytics.js`, `index.html`, `styles.css` | Analytics rendering, SPA shell, responsive presentation. |
@@ -30,7 +30,7 @@ flowchart LR
 ## Data sources and provenance
 
 - Profiles and products are authored synthetic demo seeds in the repository, not imported customer or commerce data.
-- Co-purchase baskets are synthetic examples in `app.js`; persisted product-interest events may augment a demo profile’s item history.
+- Co-purchase baskets are synthetic examples in `client.js`; persisted product-interest events may augment a demo profile’s item history.
 - Feedback and bandit reward values are simulated proxies. Dashboard journey charts/cohort values are illustrative.
 - No production data source, partnership, external catalog integration, or measured business result is connected.
 - Sentiment text is processed locally and is not logged. The event store records bounded metadata, not message bodies.
@@ -57,7 +57,7 @@ See [AI_SYSTEM.md](AI_SYSTEM.md) for inputs, outputs, fallback behavior, and lim
 ```sh
 npm start
 npm test
-node --check app.js
+node --check client.js
 node --check server.js
 node --check store.js
 ```

@@ -8,7 +8,7 @@ const { createStore, summarize, CUSTOMERS } = require('./store');
 const CATALOG = require('./catalog');
 const DEMO_CUSTOMERS = new Map(require('./customers').map(customer=>[customer.id,customer]));
 const MIME = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json'};
-const PUBLIC_FILES = new Set(['index.html','app.js','analytics.js','catalog.js','customers.js','styles.css']);
+const PUBLIC_FILES = new Set(['index.html','client.js','analytics.js','catalog.js','customers.js','styles.css']);
 const PRODUCT_BY_ID = new Map(CATALOG.map(product=>[product.id,product]));
 const store = createStore();
 

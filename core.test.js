@@ -12,7 +12,7 @@ function loadApp(storage = {}) {
   };
   const localStorage = { getItem: k => Object.prototype.hasOwnProperty.call(storage, k) ? storage[k] : null, setItem: (k, v) => { storage[k] = String(v); } };
   const context = vm.createContext({ document, localStorage, window: { scrollTo() {} }, console, setTimeout, clearTimeout, URL, Blob });
-  const src = fs.readFileSync(require.resolve('./customers.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./catalog.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./analytics.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./app.js'), 'utf8');
+  const src = fs.readFileSync(require.resolve('./customers.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./catalog.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./analytics.js'), 'utf8') + '\n' + fs.readFileSync(require.resolve('./client.js'), 'utf8');
   vm.runInContext(src, context);
   return { context, elements, storage };
 }

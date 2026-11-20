@@ -16,7 +16,7 @@ Copy `.env.example` to `.env` and set either `OPENAI_API_KEY` or `GEMINI_API_KEY
 
 ## Vercel deployment
 
-The root `server.ts` is the Vercel Node server entry point. `vercel.json` includes the SPA assets in the server bundle. Import the repository in Vercel with the project root set to the repository root, Framework Preset set to **Other**, no build command, and no output directory. Redeploy after pushing these files. The server listens on Vercel's `PORT` and defaults to `0.0.0.0`.
+The root `server.ts` is the Vercel Node server entry point. The browser bundle is named `client.js` so Vercel does not mistake the former root `app.js` frontend script for a server entry point. `vercel.json` includes the SPA assets in the server bundle. Import the repository in Vercel with the project root set to the repository root, Framework Preset set to **Other**, no build command, and no output directory. Redeploy after pushing these files. The server listens on Vercel's `PORT` and defaults to `0.0.0.0`.
 
 The local JSON store remains unchanged for local `npm start`. In Vercel, it uses `/tmp/hyperpersonal-demo-db.json` because the deployment filesystem is read-only. `/tmp` is temporary and instance-local: server-side event history and bandit sync are suitable for a short demo session but are not durable across cold starts or shared across instances. Browser local storage retains the visitor's own state. Durable shared Vercel analytics require connecting a database or KV service and configuring its credentials; do not claim durable server persistence until that is implemented and verified.
 

@@ -64,7 +64,7 @@ flowchart TD
 
 ## Data and model provenance
 
-The `customers.js` and `catalog.js` files are deterministic synthetic seed records. The co-purchase baskets are defined in `app.js`; analytics and bandit state are demo interactions written to browser storage and, in local mode, `data/demo-db.json`. On Vercel, server-side demo state is written to temporary `/tmp` storage and can disappear across cold starts or instances. Sentiment text bodies are not persisted. Shopping questions may be sent to the configured OpenAI or Gemini API for ID selection; marketing prompts contain the selected synthetic profile summary and product facts. Never enter sensitive real customer information in this demo.
+The `customers.js` and `catalog.js` files are deterministic synthetic seed records. The co-purchase baskets are defined in `client.js`; analytics and bandit state are demo interactions written to browser storage and, in local mode, `data/demo-db.json`. On Vercel, server-side demo state is written to temporary `/tmp` storage and can disappear across cold starts or instances. Sentiment text bodies are not persisted. Shopping questions may be sent to the configured OpenAI or Gemini API for ID selection; marketing prompts contain the selected synthetic profile summary and product facts. Never enter sensitive real customer information in this demo.
 
 ## Production limitations
 
