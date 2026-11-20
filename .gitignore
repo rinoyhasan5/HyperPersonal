@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+data/demo-db.json
+data/demo-db.json.tmp
+node_modules/
