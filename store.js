@@ -1,14 +1,15 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 
 const EVENT_TYPES = new Set(['experience_generated','storefront_viewed','assistant_question','sentiment_analyzed','marketing_generated','bandit_feedback','bandit_rounds']);
 const CUSTOMERS = new Set(require('./customers').map(customer=>customer.id));
 const ACTIONS = new Set(['Personalized product','Complementary item','Targeted offer','Loyalty reward','Support check-in','No action']);
 const PRODUCT_IDS = new Set(require('./catalog').map(product=>product.id));
-const DETAIL_VALUES = {itemId:new Set([...PRODUCT_IDS,'catalog','none']),outcome:new Set(['positive','no_response','5 simulated rounds']),channel:new Set(['email','sms','social']),provider:new Set(['openai','local-template','local-fallback','catalog-fallback','grounded-retrieval','personalized','standard','lexicon']),action:ACTIONS};
+const DETAIL_VALUES = {itemId:new Set([...PRODUCT_IDS,'catalog','none']),outcome:new Set(['positive','no_response','5 simulated rounds']),channel:new Set(['email','sms','social']),provider:new Set(['openai','openai-reranked','gemini','gemini-reranked','local-template','local-fallback','catalog-fallback','grounded-retrieval','personalized','standard','lexicon']),action:ACTIONS};
 function validationError(message){const error=new Error(message);error.status=400;return error}
 
-function createStore(file = process.env.HYPERPERSONAL_DATA_FILE || path.join(__dirname, 'data', 'demo-db.json')) {
+function createStore(file = process.env.HYPERPERSONAL_DATA_FILE || (process.env.VERCEL ? path.join(os.tmpdir(), 'hyperpersonal-demo-db.json') : path.join(__dirname, 'data', 'demo-db.json'))) {
   function read() {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     if (!fs.existsSync(file)) write({ schemaVersion: 1, events: [], bandit: {}, banditUpdatedAt: 0 });

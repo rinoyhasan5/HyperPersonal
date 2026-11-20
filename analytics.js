@@ -5,7 +5,7 @@ function renderAnalyticsPage() {
   const eventEntries = Object.entries(metrics);
   return `${header('MEASURE WHAT MATTERS','Insights & analytics','Counts are recorded interactions. No commerce conversion or revenue data is connected.',`<button class="button" id="exportCsv">↓ &nbsp;Export customer CSV</button>`)}
     <div class="grid kpis">
-      ${kpi('STORED INTERACTIONS',total,'⌁',state.analyticsSource||'Local data','persisted events')}
+      ${kpi('STORED INTERACTIONS',total,'⌁',state.analyticsSource||'Local data',state.storageMode==='temporary-json-file'?'current instance; may reset':'persisted events')}
       ${kpi('EXPERIENCES',metrics.experience_generated||0,'✳','Generated','events')}
       ${kpi('ASSISTANT QUESTIONS',metrics.assistant_question||0,'✧','Catalog search','events')}
       ${kpi('FEEDBACK ROUNDS',(metrics.bandit_feedback||0)+(metrics.bandit_rounds||0),'↗','Simulated','events')}

@@ -2,6 +2,8 @@
 
 Automated coverage includes API handler, algorithm, storage, rendering, and demo-flow tests. **A human browser session has not been performed in this environment.** Before presenting, open the application in a current desktop browser and check the following:
 
+- [ ] After committing and redeploying the Vercel fix, confirm `https://hyper-personal.vercel.app/` loads, `/api/health` returns `ok: true`, assistant fallback works, and a test event is accepted. The URL currently returns `500 FUNCTION_INVOCATION_FAILED`.
+
 - [ ] Start with `npm start`; open `http://127.0.0.1:4173`; confirm dashboard renders without visible error or blank content.
 - [ ] Click every sidebar item and confirm its expected page renders; use browser Back/Forward if supported by the demo navigation expectations.
 - [ ] Switch Amelia ↔ Jordan in Customer 360, Experience studio, and Live storefront. Confirm selected name, score signals, ranked products, and copy correspond to the active profile.

@@ -13,7 +13,7 @@
 
 ## Optional external LLM processing
 
-When `OPENAI_API_KEY` is configured, shopping questions and retrieved synthetic catalog facts are sent to the server-side OpenAI Responses API. The model can choose among retrieved product IDs; the server validates the IDs and constructs product facts from the canonical catalog. Marketing generation sends a synthetic first name/style summary, product facts, channel, and the requested goal. Do not submit sensitive real-customer information or confidential business data. Provider/model terms and data handling must be reviewed by the operator before enabling this path.
+When an API provider is configured, shopping questions and retrieved synthetic catalog facts are sent to the server-side OpenAI Responses API or Gemini Developer API. The model can choose among retrieved product IDs; the server validates the IDs and constructs product facts from the canonical catalog. Marketing generation sends a synthetic first name/style summary, product facts, channel, and the requested goal. Do not submit sensitive real-customer information or confidential business data. Free-tier Gemini API data may be used by Google to improve its products; review current provider terms, model availability, and data handling before enabling this path.
 
 The app's consent toggle is enforced by the normal UI flow, but it is not a production authorization boundary: consent is not stored as server-authoritative account state, and the API has no authentication. The current content endpoint should only be used with synthetic demo profiles. A production implementation must check server-side consent, enforce opt-out across every API and downstream delivery system, and minimize or avoid external prompt fields.
 
